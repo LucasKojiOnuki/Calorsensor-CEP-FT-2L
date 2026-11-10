@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TermoLab — Sensores de Temperatura & Piscina CEP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">🌡️</div>
+    <div class="logo-text">Termo<span>Lab</span></div>
+  </div>
+  <ul>
+    <li><a href="#conceitos">Conceitos</a></li>
+    <li><a href="#conversor">Conversor</a></li>
+    <li><a href="#sensores">Sensores</a></li>
+    <li><a href="#codigos">Códigos</a></li>
+    <li><a href="#piscina">Piscina CEP</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+  </ul>
+  <button class="burger">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="badge"><span class="badge-dot"></span>Física • Tecnologia • Educação</div>
+      <h1>Do <span class="gradient">Átomo</span> à Piscina Olímpica</h1>
+      <p>Uma jornada interativa pelo universo dos sensores de temperatura: conceitos físicos, simuladores ao vivo, códigos práticos e um estudo de caso real sobre o aquecimento da piscina do Colégio Estadual do Paraná.</p>
+      <div class="hero-buttons">
+        <a href="#conceitos" class="btn btn-primary">🔥 Começar Jornada</a>
+        <a href="#conversor" class="btn btn-secondary">⚡ Testar Conversor</a>
+      </div>
+    </div>
+    <div class="thermo-hero">
+      <div class="thermo-glow"></div>
+      <svg class="thermo-svg" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mercury" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#ef4444"/>
+            <stop offset="50%" stop-color="#ff6b35"/>
+            <stop offset="100%" stop-color="#ffd166"/>
+          </linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(255,255,255,.1)"/>
+            <stop offset="50%" stop-color="rgba(255,255,255,.03)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,.1)"/>
+          </linearGradient>
+        </defs>
+        <circle cx="60" cy="165" r="30" fill="url(#glass)" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+        <circle cx="60" cy="165" r="22" fill="url(#mercury)">
+          <animate attributeName="r" values="22;24;22" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="50" y="20" width="20" height="130" rx="10" fill="url(#glass)" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+        <rect x="54" y="60" width="12" height="90" rx="6" fill="url(#mercury)">
+          <animate attributeName="y" values="100;50;100" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="height" values="50;100;50" dur="4s" repeatCount="indefinite"/>
+        </rect>
+        <g stroke="rgba(255,255,255,.4)" stroke-width="1">
+          <line x1="75" y1="30" x2="85" y2="30"/>
+          <line x1="75" y1="55" x2="82" y2="55"/>
+          <line x1="75" y1="80" x2="85" y2="80"/>
+          <line x1="75" y1="105" x2="82" y2="105"/>
+          <line x1="75" y1="130" x2="85" y2="130"/>
+        </g>
+      </svg>
+      <div class="thermo-value">
+        <div class="num" id="heroTemp">27°</div>
+        <div class="unit">CELSIUS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEITOS -->
+<section id="conceitos">
+  <div class="section-title reveal">
+    <span class="eyebrow">Fundamentos</span>
+    <h2>O que é <span class="hl">Temperatura</span>?</h2>
+    <p>Múltiplas definições, um único fenômeno físico fundamental que rege nosso cotidiano e a tecnologia dos sensores.</p>
+  </div>
+  <div class="concepts-grid reveal-stagger">
+    <div class="concept-card">
+      <div class="concept-icon">🎯</div>
+      <h3>Definição Macroscópica</h3>
+      <p>Grandeza física que indica o grau de agitação das moléculas. Determina a direção do fluxo de calor entre sistemas em contato.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">⚛️</div>
+      <h3>Definição Microscópica</h3>
+      <p>Medida da energia cinética média das partículas. Quanto mais rápido as moléculas se movem, maior a temperatura do sistema.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">🌡️</div>
+      <h3>Escalas Termométricas</h3>
+      <p>Celsius (°C), Fahrenheit (°F) e Kelvin (K). A escala absoluta começa no zero absoluto (-273,15°C), onde o movimento molecular cessa.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">⚖️</div>
+      <h3>Equilíbrio Térmico</h3>
+      <p>Estado em que dois corpos em contato atingem a mesma temperatura, cessando a transferência líquida de calor entre eles.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">🔥</div>
+      <h3>Transferência de Calor</h3>
+      <p>Ocorre por condução (contato), convecção (fluidos) e radiação (ondas eletromagnéticas). Base do funcionamento de qualquer sensor térmico.</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon">📐</div>
+      <h3>Capacidade Térmica</h3>
+      <p>Quantidade de calor para variar 1°C. A água possui alta capacidade (1 cal/g°C), sendo ideal para piscinas aquecidas estáveis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERSOR -->
+<section id="conversor" class="converter">
+  <div class="section-title reveal">
+    <span class="eyebrow">Interativo</span>
+    <h2>Conversor de <span class="hl-blue">Escalas</span></h2>
+    <p>Digite um valor e veja a conversão instantânea entre Celsius, Fahrenheit e Kelvin.</p>
+  </div>
+  <div class="converter-box reveal">
+    <div class="converter-inner">
+      <div class="conv-input-group">
+        <label>🌡️ Digite a temperatura em Celsius</label>
+        <input type="number" class="conv-input" id="convInput" value="27" step="0.1">
+      </div>
+      <div class="conv-results">
+        <div class="conv-result c">
+          <div class="label">Celsius</div>
+          <div class="value" id="convC">27.0 °C</div>
+        </div>
+        <div class="conv-result f">
+          <div class="label">Fahrenheit</div>
+          <div class="value" id="convF">80.6 °F</div>
+        </div>
+        <div class="conv-result k">
+          <div class="label">Kelvin</div>
+          <div class="value" id="convK">300.15 K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section id="simulador">
+  <div class="section-title reveal">
+    <span class="eyebrow">Simulador</span>
+    <h2>Termômetro <span class="hl">Interativo</span></h2>
+    <p>Arraste o controle e veja como a temperatura afeta o estado da água e a leitura do sensor.</p>
+  </div>
+  <div class="simulator reveal">
+    <div class="sim-thermo">
+      <svg viewBox="0 0 100 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="simMercury" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#ef4444" id="simColor1"/>
+            <stop offset="100%" stop-color="#ffd166" id="simColor2"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="185" r="28" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+        <circle cx="50" cy="185" r="20" fill="url(#simMercury)" id="simBulb"/>
+        <rect x="42" y="20" width="16" height="150" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+        <rect x="45" y="60" width="10" height="110" rx="5" fill="url(#simMercury)" id="simColumn"/>
+        <g stroke="rgba(255,255,255,.4)" stroke-width="1">
+          <line x1="62" y1="30" x2="72" y2="30"/>
+          <line x1="62" y1="60" x2="68" y2="60"/>
+          <line x1="62" y1="90" x2="72" y2="90"/>
+          <line x1="62" y1="120" x2="68" y2="120"/>
+          <line x1="62" y1="150" x2="72" y2="150"/>
+        </g>
+      </svg>
+    </div>
+    <div class="sim-controls">
+      <div class="sim-display">
+        <div class="sim-temp" id="simTemp">27°C</div>
+        <div class="sim-status" id="simStatus">💧 Temperatura ideal para piscina</div>
+      </div>
+      <label class="sim-label">Ajuste a temperatura</label>
+      <input type="range" class="sim-slider" id="simSlider" min="-20" max="100" value="27">
+      <div class="sim-info">
+        <div class="sim-info-item">
+          <div class="lbl">Fahrenheit</div>
+          <div class="val" id="simF">80.6 °F</div>
+        </div>
+        <div class="sim-info-item">
+          <div class="lbl">Kelvin</div>
+          <div class="val" id="simK">300.15 K</div>
+        </div>
+        <div class="sim-info-item">
+          <div class="lbl">Estado da Água</div>
+          <div class="val" id="simState">Líquido 💧</div>
+        </div>
+        <div class="sim-info-item">
+          <div class="lbl">Energia Cinética</div>
+          <div class="val" id="simEnergy">Média ⚡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSORES -->
+<section id="sensores" class="sensors">
+  <div class="section-title reveal">
+    <span class="eyebrow">Tecnologias</span>
+    <h2>Tipos de <span class="hl">Sensores</span></h2>
+    <p>Cada tecnologia possui vantagens específicas conforme a aplicação — da indústria à piscina olímpica.</p>
+  </div>
+  <div class="sensor-grid reveal-stagger">
+    <div class="sensor-card">
+      <span class="tag">ANALÓGICO</span>
+      <h3>LM35</h3>
+      <div class="range">-55°C a +150°C</div>
+      <p>Sensor de precisão com saída linear de 10mV/°C. Fácil de usar com Arduino.</p>
+      <ul>
+        <li>Saída proporcional em Celsius</li>
+        <li>Precisão de ±0,5°C</li>
+        <li>Baixo custo</li>
+      </ul>
+    </div>
+    <div class="sensor-card">
+      <span class="tag">DIGITAL 1-WIRE</span>
+      <h3>DS18B20</h3>
+      <div class="range">-55°C a +125°C</div>
+      <p>Sensor digital à prova d'água, ideal para líquidos como a piscina do CEP.</p>
+      <ul>
+        <li>Impermeável</li>
+        <li>Precisão de ±0,5°C</li>
+        <li>Resolução até 12 bits</li>
+      </ul>
+    </div>
+    <div class="sensor-card">
+      <span class="tag">TEMP + UMIDADE</span>
+      <h3>DHT11 / DHT22</h3>
+      <div class="range">DHT22: -40 a 80°C</div>
+      <p>Medem temperatura e umidade relativa simultaneamente. Usados em estações meteorológicas.</p>
+      <ul>
+        <li>Comunicação digital</li>
+        <li>DHT22 mais preciso</li>
+        <li>Ideal para ambientes</li>
+      </ul>
+    </div>
+    <div class="sensor-card">
+      <span class="tag">RESISTIVO</span>
+      <h3>Termistor NTC/PTC</h3>
+      <div class="range">-55°C a +200°C</div>
+      <p>Resistor cuja resistência varia com a temperatura. Usados em termostatos.</p>
+      <ul>
+        <li>Alta sensibilidade</li>
+        <li>Custo muito baixo</li>
+        <li>Requer calibração</li>
+      </ul>
+    </div>
+    <div class="sensor-card">
+      <span class="tag">INDUSTRIAL</span>
+      <h3>PT100 / PT1000</h3>
+      <div class="range">-200°C a +850°C</div>
+      <p>RTD de platina. Altíssima precisão, usado em processos industriais e laboratoriais.</p>
+      <ul>
+        <li>Precisão de ±0,1°C</li>
+        <li>Excelente estabilidade</li>
+        <li>Padrão industrial</li>
+      </ul>
+    </div>
+    <div class="sensor-card">
+      <span class="tag">SEM CONTATO</span>
+      <h3>Infravermelho</h3>
+      <div class="range">-70°C a +380°C</div>
+      <p>Mede temperatura à distância através da radiação infravermelha emitida pelo objeto.</p>
+      <ul>
+        <li>Medição sem contato</li>
+        <li>Resposta rápida</li>
+        <li>Termômetros clínicos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chart-box reveal">
+    <div class="chart-title">
+      <h3>📊 Comparativo de Sensores</h3>
+      <div class="chart-legend">
+        <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,var(--cold),var(--water))"></span>Faixa</div>
+        <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,var(--accent),var(--accent-2))"></span>Precisão</div>
+        <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,var(--green),var(--purple))"></span>Custo-benefício</div>
+      </div>
+    </div>
+    <div id="chartBars"></div>
+  </div>
+</section>
+
+<!-- CÓDIGOS -->
+<section id="codigos">
+  <div class="section-title reveal">
+    <span class="eyebrow">Mão na massa</span>
+    <h2>Códigos <span class="hl">Práticos</span></h2>
+    <p>Implementações reais em Arduino e Python para você começar agora mesmo.</p>
+  </div>
+  <div class="code-tabs reveal">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="lm35">LM35 + Arduino</button>
+      <button class="tab-btn" data-tab="ds18">DS18B20 + Arduino</button>
+      <button class="tab-btn" data-tab="dht">DHT22 + Arduino</button>
+      <button class="tab-btn" data-tab="python">Python (Raspberry)</button>
+    </div>
+
+    <div class="tab-content active" id="lm35">
+      <h3>🔌 LM35 com Arduino Uno</h3>
+      <p class="desc">Leitura analógica simples — converte tensão em temperatura.</p>
+<pre><span class="com">// Sensor LM35 - Leitura de temperatura</span>
+<span class="kw">const</span> <span class="type">int</span> pinoLM35 = A0;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">Serial</span>.<span class="fn">begin</span>(<span class="num">9600</span>);
+  <span class="fn">Serial</span>.<span class="fn">println</span>(<span class="str">"LM35 inicializado!"</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="type">int</span> leitura = <span class="fn">analogRead</span>(pinoLM35);
+  <span class="type">float</span> tensao = leitura * <span class="num">5.0</span> / <span class="num">1024.0</span>;
+  <span class="type">float</span> tempC = tensao * <span class="num">100.0</span>;  <span class="com">// 10mV/°C</span>
+  
+  <span class="fn">Serial</span>.<span class="fn">print</span>(<span class="str">"Temperatura: "</span>);
+  <span class="fn">Serial</span>.<span class="fn">print</span>(tempC);
+  <span class="fn">Serial</span>.<span class="fn">println</span>(<span class="str">" °C"</span>);
+  
+  <span class="fn">delay</span>(<span class="num">1000</span>);
+}</pre>
+    </div>
+
+    <div class="tab-content" id="ds18">
+      <h3>💧 DS18B20 Impermeável (piscina CEP)</h3>
+      <p class="desc">Sensor digital à prova d'água — perfeito para monitorar a piscina.</p>
+<pre><span class="com">// DS18B20 - Sensor submersível</span>
+<span class="kw">#include</span> <span class="str">&lt;OneWire.h&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;DallasTemperature.h&gt;</span>
+
+<span class="kw">const</span> <span class="type">int</span> pinoDados = <span class="num">2</span>;
+OneWire oneWire(pinoDados);
+DallasTemperature sensors(&oneWire);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">Serial</span>.<span class="fn">begin</span>(<span class="num">9600</span>);
+  sensors.<span class="fn">begin</span>();
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  sensors.<span class="fn">requestTemperatures</span>();
+  <span class="type">float</span> temp = sensors.<span class="fn">getTempCByIndex</span>(<span class="num">0</span>);
+  
+  <span class="fn">Serial</span>.<span class="fn">print</span>(<span class="str">"Temp. da água: "</span>);
+  <span class="fn">Serial</span>.<span class="fn">print</span>(temp);
+  <span class="fn">Serial</span>.<span class="fn">println</span>(<span class="str">" °C"</span>);
+  
+  <span class="kw">if</span>(temp &lt; <span class="num">26.0</span>) <span class="fn">Serial</span>.<span class="fn">println</span>(<span class="str">"⚠ Aquecer piscina!"</span>);
+  
+  <span class="fn">delay</span>(<span class="num">2000</span>);
+}</pre>
+    </div>
+
+    <div class="tab-content" id="dht">
+      <h3>🌬️ DHT22 — Temperatura e Umidade</h3>
+      <p class="desc">Monitora ambiente ao redor da piscina (umidade do ar é crítica!).</p>
+<pre><span class="com">// DHT22 - Ambiente da piscina</span>
+<span class="kw">#include</span> <span class="str">&lt;DHT.h&gt;</span>
+
+<span class="kw">#define</span> DHTPIN <span class="num">4</span>
+<span class="kw">#define</span> DHTTYPE DHT22
+
+DHT dht(DHTPIN, DHTTYPE);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">Serial</span>.<span class="fn">begin</span>(<span class="num">9600</span>);
+  dht.<span class="fn">begin</span>();
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="type">float</span> t = dht.<span class="fn">readTemperature</span>();
+  <span class="type">float</span> h = dht.<span class="fn">readHumidity</span>();
+  
+  <span class="kw">if</span>(<span class="fn">isnan</span>(t) || <span class="fn">isnan</span>(h)) {
+    <span class="fn">Serial</span>.<span class="fn">println</span>(<span class="str">"Erro na leitura!"</span>);
+    <span class="kw">return</span>;
+  }
+  
+  <span class="fn">Serial</span>.<span class="fn">print</span>(<span class="str">"Ar: "</span>);
+  <span class="fn">Serial</span>.<span class="fn">print</span>(t); <span class="fn">Serial</span>.<span class="fn">print</span>(<span class="str">"°C | "</span>);
+  <span class="fn">Serial</span>.<span class="fn">print</span>(h); <span class="fn">Serial</span>.<span class="fn">println</span>(<span class="str">"%"</span>);
+  
+  <span class="fn">delay</span>(<span class="num">2000</span>);
+}</pre>
+    </div>
+
+    <div class="tab-content" id="python">
+      <h3>🐍 Python no Raspberry Pi</h3>
+      <p class="desc">Leitura via biblioteca Adafruit para monitoramento contínuo.</p>
+<pre><span class="com"># Monitor de temperatura - Raspberry Pi</span>
+<span class="kw">import</span> time
+<span class="kw">import</span> board
+<span class="kw">import</span> adafruit_dht
+
+sensor = adafruit_dht.DHT22(board.D4)
+TEMP_MIN = <span class="num">26.0</span>   <span class="com"># Ideal para piscina</span>
+TEMP_MAX = <span class="num">29.0</span>
+
+<span class="kw">try</span>:
+    <span class="kw">while</span> <span class="num">True</span>:
+        <span class="kw">try</span>:
+            temp = sensor.temperature
+            umid = sensor.humidity
+            <span class="kw">if</span> temp <span class="kw">is</span> <span class="kw">not</span> <span class="num">None</span>:
+                <span class="fn">print</span>(<span class="str">f"Temp: </span>{temp:.1f}<span class="str">°C | Umidade: </span>{umid:.1f}<span class="str">%"</span>)
+                <span class="kw">if</span> temp &lt; TEMP_MIN:
+                    <span class="fn">print</span>(<span class="str">"🔥 Ligar aquecedor!"</span>)
+                <span class="kw">elif</span> temp &gt; TEMP_MAX:
+                    <span class="fn">print</span>(<span class="str">"❄️ Resfriar água!"</span>)
+        <span class="kw">except</span> RuntimeError <span class="kw">as</span> e:
+            <span class="fn">print</span>(<span class="str">f"Erro: </span>{e}<span class="str">"</span>)
+        time.<span class="fn">sleep</span>(<span class="num">3</span>)
+<span class="kw">except</span> KeyboardInterrupt:
+    <span class="fn">print</span>(<span class="str">"Monitor encerrado."</span>)</pre>
+    </div>
+  </div>
+</section>
+
+<!-- PISCINA -->
+<section id="piscina" class="pool">
+  <div class="section-title reveal">
+    <span class="eyebrow">Estudo de caso</span>
+    <h2>Piscina do <span class="hl-blue">Colégio Estadual do Paraná</span></h2>
+    <p>Uma piscina olímpica com dimensões impressionantes e um desafio térmico único.</p>
+  </div>
+  <div class="pool-container reveal">
+    <div class="pool-visual">
+      <span class="pool-label">📍 CEP • CURITIBA</span>
+    </div>
+    <div class="pool-info">
+      <h2>Piscina Olímpica com <span class="hl">Altura Desproporcional</span></h2>
+      <p>A piscina do <strong>Colégio Estadual do Paraná</strong> é uma verdadeira obra de engenharia: segue o padrão olímpico de <strong>50 metros de comprimento</strong>, porém apresenta uma <strong>profundidade acima do convencional</strong>, criando uma proporção incomum entre largura/comprimento e altura.</p>
+      <p>Essa característica arquitetônica exige um <strong>sistema de aquecimento robusto</strong>, pois o volume de água é significativamente maior que o de uma piscina olímpica padrão, demandando mais energia térmica para atingir a temperatura ideal de competição (26°C a 28°C).</p>
+      <p>Sensores como o <strong>DS18B20</strong> e <strong>PT100</strong> são estrategicamente posicionados em diferentes profundidades para monitorar gradientes térmicos, garantindo conforto e segurança aos atletas.</p>
+      <div class="pool-stats">
+        <div class="stat">
+          <div class="stat-value" data-count="50">0</div>
+          <div class="stat-label">Metros</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" data-count="27">0</div>
+          <div class="stat-label">°C Ideal</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" data-count="24">0</div>
+          <div class="stat-label">Horas/Dia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagram reveal">
+    <h3>🔄 Sistema de Aquecimento Monitorado <span class="sub">clique nas etapas</span></h3>
+    <div class="flow">
+      <div class="flow-step" data-step="1">
+        <span class="emoji">🌡️</span>
+        <strong>Sensores</strong>
+        <span>DS18B20 submersos</span>
+        <div class="detail">Sensores DS18B20 distribuídos em 4 profundidades diferentes (0.5m, 1.5m, 2.5m e 3.5m) monitoram gradientes térmicos em tempo real.</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" data-step="2">
+        <span class="emoji">🔌</span>
+        <strong>Controlador</strong>
+        <span>Arduino + CLP</span>
+        <div class="detail">Um Arduino Mega coleta dados dos sensores e envia para um CLP industrial que toma decisões de liga/desliga do aquecedor com histerese de ±0.5°C.</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" data-step="3">
+        <span class="emoji">🔥</span>
+        <strong>Aquecedor</strong>
+        <span>Troca térmica</span>
+        <div class="detail">Trocador de calor a gás natural de 150.000 kcal/h, dimensionado para o volume extra da piscina devido à profundidade desproporcional.</div>
+      </div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" data-step="4">
+        <span class="emoji">💧</span>
+        <strong>Piscina</strong>
+        <span>Água aquecida</span>
+        <div class="detail">Água mantida entre 26-28°C conforme norma FINA. Circulação constante garante homogeneidade térmica em todo o volume.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="energy-chart reveal">
+    <h3 class="energy-title">⚡ Consumo Energético por Profundidade</h3>
+    <p class="energy-sub">Energia necessária para aquecer a piscina do CEP de 20°C para 27°C</p>
+    <div class="bar-chart" id="energyChart">
+      <div class="bar-col">
+        <div class="bar" data-height="30" data-value="85 kWh" style="background:linear-gradient(180deg,#60a5fa,#3b82f6)"></div>
+        <div class="bar-label">Piscina<br>Padrão<br>(1.5m)</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar" data-height="50" data-value="142 kWh" style="background:linear-gradient(180deg,#22d3ee,#0ea5e9)"></div>
+        <div class="bar-label">Olímpica<br>Padrão<br>(2.0m)</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar" data-height="75" data-value="215 kWh" style="background:linear-gradient(180deg,#a78bfa,#8b5cf6)"></div>
+        <div class="bar-label">CEP<br>Profunda<br>(2.8m)</div>
+      </div>
+      <div class="bar-col">
+        <div class="bar" data-height="95" data-value="280 kWh" style="background:linear-gradient(180deg,#ff6b35,#ef4444)"></div>
+        <div class="bar-label">CEP<br>Desproporcional<br>(3.5m)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="quiz">
+  <div class="section-title reveal">
+    <span class="eyebrow">Teste seus conhecimentos</span>
+    <h2>Quiz <span class="hl">Interativo</span></h2>
+    <p>Responda 5 perguntas sobre sensores de temperatura e descubra seu nível.</p>
+  </div>
+  <div class="quiz-box reveal">
+    <div class="quiz-progress" id="quizProgress"></div>
+    <div id="quizContent">
+      <div class="quiz-question" id="quizQuestion"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <button class="btn btn-primary quiz-next" id="quizNext">Próxima →</button>
+    </div>
+    <div class="quiz-result" id="quizResult">
+      <div class="quiz-score" id="quizScore">0/5</div>
+      <h3 id="quizMsg">Parabéns!</h3>
+      <p id="quizDesc"></p>
+      <button class="btn btn-secondary" id="restartBtn">🔄 Tentar Novamente</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-icon">🌡️</div>
+        <div class="logo-text">Termo<span>Lab</span></div>
+      </div>
+      <p>Plataforma educacional interativa sobre sensores de temperatura, desenvolvida para estudantes do Colégio Estadual do Paraná.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#conceitos">Conceitos</a>
+      <a href="#conversor">Conversor</a>
+      <a href="#sensores">Sensores</a>
+      <a href="#codigos">Códigos</a>
+    </div>
+    <div class="footer-col">
+      <h4>Especial</h4>
+      <a href="#piscina">Piscina CEP</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#quiz">Quiz</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Desenvolvido com <span class="heart">❤️</span> para fins educacionais • Colégio Estadual do Paraná</p>
+    <p class="copy">© 2026 — Projeto Interdisciplinar de Física e Tecnologia</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

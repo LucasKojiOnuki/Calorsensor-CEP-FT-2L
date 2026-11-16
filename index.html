@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TermoLab - Site educativo sobre sensores de temperatura com estudo de caso da piscina do Colégio Estadual do Paraná">
   <title>TermoLab — Sensores de Temperatura & Piscina CEP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,38 +12,43 @@
 </head>
 <body>
 
+<!-- Skip Link para acessibilidade -->
+<a href="#conceitos" class="skip-link">Pular para o conteúdo principal</a>
+
 <!-- NAVBAR -->
-<nav>
+<nav role="navigation" aria-label="Navegação principal">
   <div class="logo">
-    <div class="logo-icon">🌡️</div>
+    <div class="logo-icon" aria-hidden="true">🌡️</div>
     <div class="logo-text">Termo<span>Lab</span></div>
   </div>
   <ul>
     <li><a href="#conceitos">Conceitos</a></li>
     <li><a href="#conversor">Conversor</a></li>
+    <li><a href="#como-funciona">Como Funciona</a></li>
+    <li><a href="#medindo">Medindo</a></li>
     <li><a href="#sensores">Sensores</a></li>
     <li><a href="#codigos">Códigos</a></li>
     <li><a href="#piscina">Piscina CEP</a></li>
     <li><a href="#quiz">Quiz</a></li>
   </ul>
-  <button class="burger">☰</button>
+  <button class="burger" aria-label="Abrir menu">☰</button>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="particles" id="particles"></div>
+<section class="hero" aria-label="Introdução">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-text">
-      <div class="badge"><span class="badge-dot"></span>Física • Tecnologia • Educação</div>
+      <div class="badge"><span class="badge-dot" aria-hidden="true"></span>Física • Tecnologia • Educação</div>
       <h1>Do <span class="gradient">Átomo</span> à Piscina Olímpica</h1>
       <p>Uma jornada interativa pelo universo dos sensores de temperatura: conceitos físicos, simuladores ao vivo, códigos práticos e um estudo de caso real sobre o aquecimento da piscina do Colégio Estadual do Paraná.</p>
       <div class="hero-buttons">
         <a href="#conceitos" class="btn btn-primary">🔥 Começar Jornada</a>
-        <a href="#conversor" class="btn btn-secondary">⚡ Testar Conversor</a>
+        <a href="#como-funciona" class="btn btn-secondary">🔬 Como Funciona</a>
       </div>
     </div>
-    <div class="thermo-hero">
+    <div class="thermo-hero" aria-hidden="true">
       <div class="thermo-glow"></div>
       <svg class="thermo-svg" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -83,71 +89,72 @@
 </section>
 
 <!-- CONCEITOS -->
-<section id="conceitos">
+<section id="conceitos" aria-labelledby="conceitos-title">
   <div class="section-title reveal">
     <span class="eyebrow">Fundamentos</span>
-    <h2>O que é <span class="hl">Temperatura</span>?</h2>
+    <h2 id="conceitos-title">O que é <span class="hl">Temperatura</span>?</h2>
     <p>Múltiplas definições, um único fenômeno físico fundamental que rege nosso cotidiano e a tecnologia dos sensores.</p>
   </div>
   <div class="concepts-grid reveal-stagger">
-    <div class="concept-card">
-      <div class="concept-icon">🎯</div>
+    <article class="concept-card">
+      <div class="concept-icon" aria-hidden="true">🎯</div>
       <h3>Definição Macroscópica</h3>
       <p>Grandeza física que indica o grau de agitação das moléculas. Determina a direção do fluxo de calor entre sistemas em contato.</p>
-    </div>
-    <div class="concept-card">
-      <div class="concept-icon">⚛️</div>
+    </article>
+    <article class="concept-card">
+      <div class="concept-icon" aria-hidden="true">⚛️</div>
       <h3>Definição Microscópica</h3>
       <p>Medida da energia cinética média das partículas. Quanto mais rápido as moléculas se movem, maior a temperatura do sistema.</p>
-    </div>
-    <div class="concept-card">
-      <div class="concept-icon">🌡️</div>
+    </article>
+    <article class="concept-card">
+      <div class="concept-icon" aria-hidden="true">🌡️</div>
       <h3>Escalas Termométricas</h3>
       <p>Celsius (°C), Fahrenheit (°F) e Kelvin (K). A escala absoluta começa no zero absoluto (-273,15°C), onde o movimento molecular cessa.</p>
-    </div>
-    <div class="concept-card">
-      <div class="concept-icon">⚖️</div>
+    </article>
+    <article class="concept-card">
+      <div class="concept-icon" aria-hidden="true">⚖️</div>
       <h3>Equilíbrio Térmico</h3>
       <p>Estado em que dois corpos em contato atingem a mesma temperatura, cessando a transferência líquida de calor entre eles.</p>
-    </div>
-    <div class="concept-card">
-      <div class="concept-icon">🔥</div>
+    </article>
+    <article class="concept-card">
+      <div class="concept-icon" aria-hidden="true">🔥</div>
       <h3>Transferência de Calor</h3>
       <p>Ocorre por condução (contato), convecção (fluidos) e radiação (ondas eletromagnéticas). Base do funcionamento de qualquer sensor térmico.</p>
-    </div>
-    <div class="concept-card">
-      <div class="concept-icon">📐</div>
+    </article>
+    <article class="concept-card">
+      <div class="concept-icon" aria-hidden="true">📐</div>
       <h3>Capacidade Térmica</h3>
       <p>Quantidade de calor para variar 1°C. A água possui alta capacidade (1 cal/g°C), sendo ideal para piscinas aquecidas estáveis.</p>
-    </div>
+    </article>
   </div>
 </section>
 
 <!-- CONVERSOR -->
-<section id="conversor" class="converter">
+<section id="conversor" class="converter" aria-labelledby="conversor-title">
   <div class="section-title reveal">
     <span class="eyebrow">Interativo</span>
-    <h2>Conversor de <span class="hl-blue">Escalas</span></h2>
+    <h2 id="conversor-title">Conversor de <span class="hl-blue">Escalas</span></h2>
     <p>Digite um valor e veja a conversão instantânea entre Celsius, Fahrenheit e Kelvin.</p>
   </div>
   <div class="converter-box reveal">
     <div class="converter-inner">
       <div class="conv-input-group">
-        <label>🌡️ Digite a temperatura em Celsius</label>
-        <input type="number" class="conv-input" id="convInput" value="27" step="0.1">
+        <label for="convInput">🌡️ Digite a temperatura em Celsius</label>
+        <input type="number" class="conv-input" id="convInput" value="27" step="0.1" aria-describedby="convHelp">
+        <span id="convHelp" class="sr-only">Digite um valor numérico para converter entre escalas</span>
       </div>
       <div class="conv-results">
         <div class="conv-result c">
           <div class="label">Celsius</div>
-          <div class="value" id="convC">27.0 °C</div>
+          <div class="value" id="convC" aria-live="polite">27.0 °C</div>
         </div>
         <div class="conv-result f">
           <div class="label">Fahrenheit</div>
-          <div class="value" id="convF">80.6 °F</div>
+          <div class="value" id="convF" aria-live="polite">80.6 °F</div>
         </div>
         <div class="conv-result k">
           <div class="label">Kelvin</div>
-          <div class="value" id="convK">300.15 K</div>
+          <div class="value" id="convK" aria-live="polite">300.15 K</div>
         </div>
       </div>
     </div>
@@ -155,14 +162,14 @@
 </section>
 
 <!-- SIMULADOR -->
-<section id="simulador">
+<section id="simulador" aria-labelledby="sim-title">
   <div class="section-title reveal">
     <span class="eyebrow">Simulador</span>
-    <h2>Termômetro <span class="hl">Interativo</span></h2>
+    <h2 id="sim-title">Termômetro <span class="hl">Interativo</span></h2>
     <p>Arraste o controle e veja como a temperatura afeta o estado da água e a leitura do sensor.</p>
   </div>
   <div class="simulator reveal">
-    <div class="sim-thermo">
+    <div class="sim-thermo" aria-hidden="true">
       <svg viewBox="0 0 100 220" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="simMercury" x1="0" y1="1" x2="0" y2="0">
@@ -185,11 +192,11 @@
     </div>
     <div class="sim-controls">
       <div class="sim-display">
-        <div class="sim-temp" id="simTemp">27°C</div>
+        <div class="sim-temp" id="simTemp" aria-live="polite">27°C</div>
         <div class="sim-status" id="simStatus">💧 Temperatura ideal para piscina</div>
       </div>
-      <label class="sim-label">Ajuste a temperatura</label>
-      <input type="range" class="sim-slider" id="simSlider" min="-20" max="100" value="27">
+      <label for="simSlider" class="sim-label">Ajuste a temperatura</label>
+      <input type="range" class="sim-slider" id="simSlider" min="-20" max="100" value="27" aria-valuemin="-20" aria-valuemax="100" aria-valuenow="27">
       <div class="sim-info">
         <div class="sim-info-item">
           <div class="lbl">Fahrenheit</div>
@@ -212,15 +219,382 @@
   </div>
 </section>
 
+<!-- ============================================
+     NOVA SEÇÃO: COMO O SENSOR FUNCIONA
+     ============================================ -->
+<section id="como-funciona" class="how-works" aria-labelledby="how-title">
+  <div class="section-title reveal">
+    <span class="eyebrow">Por dentro do sensor</span>
+    <h2 id="how-title">Como o Sensor de <span class="hl">Temperatura</span> Funciona?</h2>
+    <p>Entenda o princípio físico que transforma calor em informação digital — passo a passo, do átomo ao display.</p>
+  </div>
+
+  <!-- DIAGRAMA INTERATIVO -->
+  <div class="how-diagram reveal">
+    <h3 class="how-diagram-title">🔬 O Princípio Físico <span class="sub">clique em cada etapa</span></h3>
+    <div class="how-flow">
+      <div class="how-step" data-step="1" tabindex="0" role="button" aria-expanded="false">
+        <div class="how-step-num">1</div>
+        <span class="emoji" aria-hidden="true">🔥</span>
+        <strong>Calor é aplicado</strong>
+        <span>Energia térmica atinge o sensor</span>
+        <div class="how-detail">
+          Quando o sensor entra em contato com um corpo quente, as moléculas do ambiente transferem energia térmica para o material sensível do sensor por <strong>condução</strong>. Esse processo ocorre até que o sensor atinja o <strong>equilíbrio térmico</strong> com o meio.
+        </div>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="how-step" data-step="2" tabindex="0" role="button" aria-expanded="false">
+        <div class="how-step-num">2</div>
+        <span class="emoji" aria-hidden="true">⚛️</span>
+        <strong>Moléculas agitam</strong>
+        <span>Aumento da energia cinética</span>
+        <div class="how-detail">
+          As moléculas do material sensor começam a vibrar mais rapidamente. Esse aumento da <strong>energia cinética média</strong> é exatamente o que definimos como "aumento de temperatura". Quanto mais agitação, maior a temperatura medida.
+        </div>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="how-step" data-step="3" tabindex="0" role="button" aria-expanded="false">
+        <div class="how-step-num">3</div>
+        <span class="emoji" aria-hidden="true">⚡</span>
+        <strong>Propriedade elétrica muda</strong>
+        <span>Resistência, tensão ou dilatação</span>
+        <div class="how-detail">
+          Dependendo do tipo de sensor, a agitação molecular altera alguma propriedade elétrica:
+          <ul>
+            <li><strong>Termistor:</strong> resistência elétrica varia</li>
+            <li><strong>LM35:</strong> tensão de saída muda (10mV/°C)</li>
+            <li><strong>Termopar:</strong> gera pequena tensão (Seebeck)</li>
+            <li><strong>PT100:</strong> resistência da platina aumenta linearmente</li>
+          </ul>
+        </div>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="how-step" data-step="4" tabindex="0" role="button" aria-expanded="false">
+        <div class="how-step-num">4</div>
+        <span class="emoji" aria-hidden="true">🔌</span>
+        <strong>Sinal é convertido</strong>
+        <span>ADC transforma em números</span>
+        <div class="how-detail">
+          Um conversor <strong>Analógico-Digital (ADC)</strong> transforma a variação de tensão ou resistência em um valor numérico. No Arduino, por exemplo, o ADC de 10 bits converte 0-5V em valores de 0 a 1023, que depois são transformados em °C por uma fórmula matemática.
+        </div>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="how-step" data-step="5" tabindex="0" role="button" aria-expanded="false">
+        <div class="how-step-num">5</div>
+        <span class="emoji" aria-hidden="true">📊</span>
+        <strong>Valor é exibido</strong>
+        <span>Display, serial ou dashboard</span>
+        <div class="how-detail">
+          O microcontrolador processa o número e exibe o resultado em um display LCD, envia pela porta serial, publica em um dashboard web ou aciona um relé para ligar/desligar um aquecedor — como no sistema da piscina do CEP!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPOS DE PRINCÍPIOS -->
+  <div class="principles-box reveal">
+    <h3 class="principles-title">🧪 Princípios Físicos por Tipo de Sensor</h3>
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-icon">📈</div>
+        <h4>Dilatação Térmica</h4>
+        <p class="principle-formula">ΔL = L₀ · α · ΔT</p>
+        <p>Usado em termômetros de mercúrio e álcool. O líquido se expande dentro de um tubo capilar conforme a temperatura aumenta.</p>
+        <div class="principle-example">💡 Exemplo: termômetro clínico tradicional</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">⚡</div>
+        <h4>Variação de Resistência</h4>
+        <p class="principle-formula">R(T) = R₀ · [1 + α(T-T₀)]</p>
+        <p>A resistência elétrica do material muda com a temperatura. NTC diminui, PTC aumenta. PT100 usa platina pura.</p>
+        <div class="principle-example">💡 Exemplo: PT100, termistores, LM35</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">🔗</div>
+        <h4>Efeito Seebeck</h4>
+        <p class="principle-formula">V = α · (T_quente - T_fria)</p>
+        <p>Dois metais diferentes unidos geram uma pequena tensão proporcional à diferença de temperatura entre as junções.</p>
+        <div class="principle-example">💡 Exemplo: termopares tipo K, J, T</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">📡</div>
+        <h4>Radiação Infravermelha</h4>
+        <p class="principle-formula">E = ε · σ · T⁴</p>
+        <p>Todo corpo emite radiação IR proporcional à sua temperatura (Lei de Stefan-Boltzmann). O sensor capta essa radiação sem contato.</p>
+        <div class="principle-example">💡 Exemplo: MLX90614, pirômetros</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANIMAÇÃO MOLECULAR -->
+  <div class="molecular-box reveal">
+    <h3 class="molecular-title">🎬 Simulação: Agitação Molecular em Tempo Real</h3>
+    <p class="molecular-sub">Observe como as moléculas se movem conforme a temperatura muda</p>
+    <div class="molecular-container">
+      <div class="molecular-canvas" id="molecularCanvas"></div>
+      <div class="molecular-controls">
+        <label for="molecularSlider">Temperatura do sistema</label>
+        <input type="range" id="molecularSlider" min="0" max="100" value="30">
+        <div class="molecular-info">
+          <div class="mol-info-item">
+            <span class="mol-label">Estado</span>
+            <span class="mol-value" id="molState">Líquido 💧</span>
+          </div>
+          <div class="mol-info-item">
+            <span class="mol-label">Velocidade</span>
+            <span class="mol-value" id="molSpeed">Média</span>
+          </div>
+          <div class="mol-info-item">
+            <span class="mol-label">Energia</span>
+            <span class="mol-value" id="molEnergy">Moderada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     NOVA SEÇÃO: MEDINDO O AQUECIMENTO DA ÁGUA
+     ============================================ -->
+<section id="medindo" class="measuring" aria-labelledby="medindo-title">
+  <div class="section-title reveal">
+    <span class="eyebrow">Métodos práticos</span>
+    <h2 id="medindo-title">Como Medir o <span class="hl-blue">Aquecimento da Água</span>?</h2>
+    <p>Da teoria à prática: descubra os métodos usados para medir e calcular o aquecimento da água em piscinas, indústrias e laboratórios.</p>
+  </div>
+
+  <!-- MÉTODOS DE MEDIÇÃO -->
+  <div class="methods-grid reveal-stagger">
+    <article class="method-card">
+      <div class="method-header">
+        <span class="method-number">01</span>
+        <div class="method-icon">🌡️</div>
+      </div>
+      <h3>Termômetro de Imersão</h3>
+      <p class="method-desc">Método clássico e direto. O sensor é mergulhado na água até atingir equilíbrio térmico.</p>
+      <ul class="method-features">
+        <li>✅ Precisão de ±0,5°C</li>
+        <li>✅ Baixo custo</li>
+        <li>⚠️ Requer contato físico</li>
+        <li>⚠️ Tempo de resposta lento</li>
+      </ul>
+      <div class="method-use">📍 Uso: Piscinas, aquários, laboratórios</div>
+    </article>
+
+    <article class="method-card">
+      <div class="method-header">
+        <span class="method-number">02</span>
+        <div class="method-icon">💧</div>
+      </div>
+      <h3>Sensor Digital Submerso</h3>
+      <p class="method-desc">Sensores como DS18B20 à prova d'água enviam dados digitais diretamente para um microcontrolador.</p>
+      <ul class="method-features">
+        <li>✅ Impermeável (IP67)</li>
+        <li>✅ Leitura digital precisa</li>
+        <li>✅ Monitoramento contínuo</li>
+        <li>✅ Integração com automação</li>
+      </ul>
+      <div class="method-use">📍 Uso: Piscina CEP, aquicultura</div>
+    </article>
+
+    <article class="method-card">
+      <div class="method-header">
+        <span class="method-number">03</span>
+        <div class="method-icon">📡</div>
+      </div>
+      <h3>Infravermelho (IR)</h3>
+      <p class="method-desc">Mede a radiação térmica emitida pela superfície da água sem contato físico. Rápido e higiênico.</p>
+      <ul class="method-features">
+        <li>✅ Sem contato</li>
+        <li>✅ Resposta instantânea</li>
+        <li>⚠️ Mede apenas superfície</li>
+        <li>⚠️ Afetado por vapor/umidade</li>
+      </ul>
+      <div class="method-use">📍 Uso: Inspeções rápidas, indústria</div>
+    </article>
+
+    <article class="method-card">
+      <div class="method-header">
+        <span class="method-number">04</span>
+        <div class="method-icon">🧮</div>
+      </div>
+      <h3>Cálculo por Calorimetria</h3>
+      <p class="method-desc">Usa a fórmula Q = m·c·ΔT para calcular a energia necessária para aquecer um volume de água.</p>
+      <ul class="method-features">
+        <li>✅ Precisão teórica alta</li>
+        <li>✅ Dimensiona aquecedores</li>
+        <li>✅ Prevê consumo energético</li>
+        <li>⚠️ Depende de medições precisas</li>
+      </ul>
+      <div class="method-use">📍 Uso: Engenharia, projetos térmicos</div>
+    </article>
+  </div>
+
+  <!-- FÓRMULA DA CALORIMETRIA -->
+  <div class="formula-box reveal">
+    <div class="formula-content">
+      <div class="formula-visual">
+        <div class="formula-main">
+          <span class="formula-letter">Q</span>
+          <span class="formula-eq">=</span>
+          <span class="formula-letter">m</span>
+          <span class="formula-dot">·</span>
+          <span class="formula-letter">c</span>
+          <span class="formula-dot">·</span>
+          <span class="formula-letter">ΔT</span>
+        </div>
+        <p class="formula-name">Equação Fundamental da Calorimetria</p>
+      </div>
+      <div class="formula-legend">
+        <div class="formula-item">
+          <span class="formula-symbol">Q</span>
+          <div>
+            <strong>Quantidade de calor</strong>
+            <span>Medida em Joules (J) ou calorias (cal)</span>
+          </div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-symbol">m</span>
+          <div>
+            <strong>Massa da água</strong>
+            <span>1 litro = 1 kg = 1000 g</span>
+          </div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-symbol">c</span>
+          <div>
+            <strong>Calor específico da água</strong>
+            <span>1 cal/g°C ou 4,186 J/g°C</span>
+          </div>
+        </div>
+        <div class="formula-item">
+          <span class="formula-symbol">ΔT</span>
+          <div>
+            <strong>Variação de temperatura</strong>
+            <span>T_final - T_inicial (em °C)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALCULADORA INTERATIVA -->
+  <div class="calculator-box reveal">
+    <h3 class="calculator-title">🧮 Calculadora de Aquecimento da Água</h3>
+    <p class="calculator-sub">Calcule a energia necessária para aquecer qualquer volume de água — incluindo a piscina do CEP!</p>
+
+    <div class="calculator-grid">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label for="calcVolume">💧 Volume de água (litros)</label>
+          <input type="number" id="calcVolume" value="1000" min="1" step="100">
+          <div class="calc-presets">
+            <button class="preset-btn" data-value="200">Banheira (200L)</button>
+            <button class="preset-btn" data-value="1000">Piscina pequena (1.000L)</button>
+            <button class="preset-btn" data-value="25000">Piscina CEP (25.000L)</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcT1">🌡️ Temperatura inicial (°C)</label>
+          <input type="number" id="calcT1" value="20" min="0" max="100" step="0.5">
+        </div>
+
+        <div class="calc-field">
+          <label for="calcT2">🔥 Temperatura final desejada (°C)</label>
+          <input type="number" id="calcT2" value="27" min="0" max="100" step="0.5">
+        </div>
+
+        <div class="calc-field">
+          <label for="calcTime">⏱️ Tempo disponível (horas)</label>
+          <input type="number" id="calcTime" value="4" min="0.5" step="0.5">
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <h4>📊 Resultados do Cálculo</h4>
+        <div class="result-card highlight">
+          <div class="result-label">Energia total necessária</div>
+          <div class="result-value" id="resultEnergy">732.550</div>
+          <div class="result-unit">Joules (J)</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Em quilocalorias</div>
+          <div class="result-value" id="resultKcal">175.000</div>
+          <div class="result-unit">kcal</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Em quilowatt-hora</div>
+          <div class="result-value" id="resultKwh">203,5</div>
+          <div class="result-unit">kWh</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Potência do aquecedor</div>
+          <div class="result-value" id="resultPower">50,9</div>
+          <div class="result-unit">kW</div>
+        </div>
+        <div class="result-card">
+          <div class="result-label">Custo estimado (R$ 0,80/kWh)</div>
+          <div class="result-value" id="resultCost">R$ 162,80</div>
+          <div class="result-unit">reais</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-explanation">
+      <h4>💡 Como o cálculo é feito?</h4>
+      <div class="calc-steps" id="calcSteps">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- EXEMPLO PRÁTICO: PISCINA CEP -->
+  <div class="example-box reveal">
+    <h3 class="example-title">🏊 Exemplo Real: Piscina do Colégio Estadual do Paraná</h3>
+    <div class="example-grid">
+      <div class="example-visual">
+        <div class="pool-mini">
+          <div class="pool-mini-water"></div>
+          <div class="pool-mini-labels">
+            <span>50m</span>
+            <span>25m</span>
+            <span>3,5m</span>
+          </div>
+        </div>
+      </div>
+      <div class="example-data">
+        <h4>📐 Dimensões da piscina</h4>
+        <ul class="example-list">
+          <li><strong>Comprimento:</strong> 50 metros (olímpica)</li>
+          <li><strong>Largura:</strong> 25 metros</li>
+          <li><strong>Profundidade:</strong> 3,5 metros (desproporcional!)</li>
+          <li><strong>Volume total:</strong> ~4.375.000 litros</li>
+          <li><strong>Temp. ambiente Curitiba:</strong> ~15°C (média inverno)</li>
+          <li><strong>Temp. ideal FINA:</strong> 26-28°C</li>
+        </ul>
+        <div class="example-insight">
+          <span class="insight-icon">⚠️</span>
+          <div>
+            <strong>Desafio térmico:</strong>
+            <p>Devido à profundidade desproporcional (3,5m ao invés dos 2m padrão), a piscina do CEP tem <strong>75% mais volume</strong> que uma piscina olímpica convencional, exigindo um sistema de aquecimento 75% mais potente!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SENSORES -->
-<section id="sensores" class="sensors">
+<section id="sensores" class="sensors" aria-labelledby="sensores-title">
   <div class="section-title reveal">
     <span class="eyebrow">Tecnologias</span>
-    <h2>Tipos de <span class="hl">Sensores</span></h2>
+    <h2 id="sensores-title">Tipos de <span class="hl">Sensores</span></h2>
     <p>Cada tecnologia possui vantagens específicas conforme a aplicação — da indústria à piscina olímpica.</p>
   </div>
   <div class="sensor-grid reveal-stagger">
-    <div class="sensor-card">
+    <article class="sensor-card">
       <span class="tag">ANALÓGICO</span>
       <h3>LM35</h3>
       <div class="range">-55°C a +150°C</div>
@@ -230,8 +604,8 @@
         <li>Precisão de ±0,5°C</li>
         <li>Baixo custo</li>
       </ul>
-    </div>
-    <div class="sensor-card">
+    </article>
+    <article class="sensor-card">
       <span class="tag">DIGITAL 1-WIRE</span>
       <h3>DS18B20</h3>
       <div class="range">-55°C a +125°C</div>
@@ -241,8 +615,8 @@
         <li>Precisão de ±0,5°C</li>
         <li>Resolução até 12 bits</li>
       </ul>
-    </div>
-    <div class="sensor-card">
+    </article>
+    <article class="sensor-card">
       <span class="tag">TEMP + UMIDADE</span>
       <h3>DHT11 / DHT22</h3>
       <div class="range">DHT22: -40 a 80°C</div>
@@ -252,8 +626,8 @@
         <li>DHT22 mais preciso</li>
         <li>Ideal para ambientes</li>
       </ul>
-    </div>
-    <div class="sensor-card">
+    </article>
+    <article class="sensor-card">
       <span class="tag">RESISTIVO</span>
       <h3>Termistor NTC/PTC</h3>
       <div class="range">-55°C a +200°C</div>
@@ -263,8 +637,8 @@
         <li>Custo muito baixo</li>
         <li>Requer calibração</li>
       </ul>
-    </div>
-    <div class="sensor-card">
+    </article>
+    <article class="sensor-card">
       <span class="tag">INDUSTRIAL</span>
       <h3>PT100 / PT1000</h3>
       <div class="range">-200°C a +850°C</div>
@@ -274,8 +648,8 @@
         <li>Excelente estabilidade</li>
         <li>Padrão industrial</li>
       </ul>
-    </div>
-    <div class="sensor-card">
+    </article>
+    <article class="sensor-card">
       <span class="tag">SEM CONTATO</span>
       <h3>Infravermelho</h3>
       <div class="range">-70°C a +380°C</div>
@@ -285,38 +659,38 @@
         <li>Resposta rápida</li>
         <li>Termômetros clínicos</li>
       </ul>
-    </div>
+    </article>
   </div>
 
-  <div class="chart-box reveal">
+  <div class="chart-box reveal" aria-labelledby="chart-title">
     <div class="chart-title">
-      <h3>📊 Comparativo de Sensores</h3>
+      <h3 id="chart-title">📊 Comparativo de Sensores</h3>
       <div class="chart-legend">
         <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,var(--cold),var(--water))"></span>Faixa</div>
         <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,var(--accent),var(--accent-2))"></span>Precisão</div>
         <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(90deg,var(--green),var(--purple))"></span>Custo-benefício</div>
       </div>
     </div>
-    <div id="chartBars"></div>
+    <div id="chartBars" role="img" aria-label="Gráfico comparativo de sensores"></div>
   </div>
 </section>
 
 <!-- CÓDIGOS -->
-<section id="codigos">
+<section id="codigos" aria-labelledby="codigos-title">
   <div class="section-title reveal">
     <span class="eyebrow">Mão na massa</span>
-    <h2>Códigos <span class="hl">Práticos</span></h2>
+    <h2 id="codigos-title">Códigos <span class="hl">Práticos</span></h2>
     <p>Implementações reais em Arduino e Python para você começar agora mesmo.</p>
   </div>
   <div class="code-tabs reveal">
-    <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="lm35">LM35 + Arduino</button>
-      <button class="tab-btn" data-tab="ds18">DS18B20 + Arduino</button>
-      <button class="tab-btn" data-tab="dht">DHT22 + Arduino</button>
-      <button class="tab-btn" data-tab="python">Python (Raspberry)</button>
+    <div class="tab-buttons" role="tablist">
+      <button class="tab-btn active" data-tab="lm35" role="tab" aria-selected="true">LM35 + Arduino</button>
+      <button class="tab-btn" data-tab="ds18" role="tab" aria-selected="false">DS18B20 + Arduino</button>
+      <button class="tab-btn" data-tab="dht" role="tab" aria-selected="false">DHT22 + Arduino</button>
+      <button class="tab-btn" data-tab="python" role="tab" aria-selected="false">Python (Raspberry)</button>
     </div>
 
-    <div class="tab-content active" id="lm35">
+    <div class="tab-content active" id="lm35" role="tabpanel">
       <h3>🔌 LM35 com Arduino Uno</h3>
       <p class="desc">Leitura analógica simples — converte tensão em temperatura.</p>
 <pre><span class="com">// Sensor LM35 - Leitura de temperatura</span>
@@ -340,7 +714,7 @@
 }</pre>
     </div>
 
-    <div class="tab-content" id="ds18">
+    <div class="tab-content" id="ds18" role="tabpanel">
       <h3>💧 DS18B20 Impermeável (piscina CEP)</h3>
       <p class="desc">Sensor digital à prova d'água — perfeito para monitorar a piscina.</p>
 <pre><span class="com">// DS18B20 - Sensor submersível</span>
@@ -370,7 +744,7 @@ DallasTemperature sensors(&oneWire);
 }</pre>
     </div>
 
-    <div class="tab-content" id="dht">
+    <div class="tab-content" id="dht" role="tabpanel">
       <h3>🌬️ DHT22 — Temperatura e Umidade</h3>
       <p class="desc">Monitora ambiente ao redor da piscina (umidade do ar é crítica!).</p>
 <pre><span class="com">// DHT22 - Ambiente da piscina</span>
@@ -403,7 +777,7 @@ DHT dht(DHTPIN, DHTTYPE);
 }</pre>
     </div>
 
-    <div class="tab-content" id="python">
+    <div class="tab-content" id="python" role="tabpanel">
       <h3>🐍 Python no Raspberry Pi</h3>
       <p class="desc">Leitura via biblioteca Adafruit para monitoramento contínuo.</p>
 <pre><span class="com"># Monitor de temperatura - Raspberry Pi</span>
@@ -436,14 +810,14 @@ TEMP_MAX = <span class="num">29.0</span>
 </section>
 
 <!-- PISCINA -->
-<section id="piscina" class="pool">
+<section id="piscina" class="pool" aria-labelledby="piscina-title">
   <div class="section-title reveal">
     <span class="eyebrow">Estudo de caso</span>
-    <h2>Piscina do <span class="hl-blue">Colégio Estadual do Paraná</span></h2>
+    <h2 id="piscina-title">Piscina do <span class="hl-blue">Colégio Estadual do Paraná</span></h2>
     <p>Uma piscina olímpica com dimensões impressionantes e um desafio térmico único.</p>
   </div>
   <div class="pool-container reveal">
-    <div class="pool-visual">
+    <div class="pool-visual" aria-hidden="true">
       <span class="pool-label">📍 CEP • CURITIBA</span>
     </div>
     <div class="pool-info">
@@ -468,32 +842,32 @@ TEMP_MAX = <span class="num">29.0</span>
     </div>
   </div>
 
-  <div class="diagram reveal">
-    <h3>🔄 Sistema de Aquecimento Monitorado <span class="sub">clique nas etapas</span></h3>
+  <div class="diagram reveal" aria-labelledby="diagram-title">
+    <h3 id="diagram-title">🔄 Sistema de Aquecimento Monitorado <span class="sub">clique nas etapas</span></h3>
     <div class="flow">
-      <div class="flow-step" data-step="1">
-        <span class="emoji">🌡️</span>
+      <div class="flow-step" data-step="1" tabindex="0" role="button" aria-expanded="false">
+        <span class="emoji" aria-hidden="true">🌡️</span>
         <strong>Sensores</strong>
         <span>DS18B20 submersos</span>
         <div class="detail">Sensores DS18B20 distribuídos em 4 profundidades diferentes (0.5m, 1.5m, 2.5m e 3.5m) monitoram gradientes térmicos em tempo real.</div>
       </div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" data-step="2">
-        <span class="emoji">🔌</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-step" data-step="2" tabindex="0" role="button" aria-expanded="false">
+        <span class="emoji" aria-hidden="true">🔌</span>
         <strong>Controlador</strong>
         <span>Arduino + CLP</span>
         <div class="detail">Um Arduino Mega coleta dados dos sensores e envia para um CLP industrial que toma decisões de liga/desliga do aquecedor com histerese de ±0.5°C.</div>
       </div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" data-step="3">
-        <span class="emoji">🔥</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-step" data-step="3" tabindex="0" role="button" aria-expanded="false">
+        <span class="emoji" aria-hidden="true">🔥</span>
         <strong>Aquecedor</strong>
         <span>Troca térmica</span>
         <div class="detail">Trocador de calor a gás natural de 150.000 kcal/h, dimensionado para o volume extra da piscina devido à profundidade desproporcional.</div>
       </div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-step" data-step="4">
-        <span class="emoji">💧</span>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-step" data-step="4" tabindex="0" role="button" aria-expanded="false">
+        <span class="emoji" aria-hidden="true">💧</span>
         <strong>Piscina</strong>
         <span>Água aquecida</span>
         <div class="detail">Água mantida entre 26-28°C conforme norma FINA. Circulação constante garante homogeneidade térmica em todo o volume.</div>
@@ -501,10 +875,10 @@ TEMP_MAX = <span class="num">29.0</span>
     </div>
   </div>
 
-  <div class="energy-chart reveal">
-    <h3 class="energy-title">⚡ Consumo Energético por Profundidade</h3>
+  <div class="energy-chart reveal" aria-labelledby="energy-title">
+    <h3 class="energy-title" id="energy-title">⚡ Consumo Energético por Profundidade</h3>
     <p class="energy-sub">Energia necessária para aquecer a piscina do CEP de 20°C para 27°C</p>
-    <div class="bar-chart" id="energyChart">
+    <div class="bar-chart" id="energyChart" role="img" aria-label="Gráfico de consumo energético">
       <div class="bar-col">
         <div class="bar" data-height="30" data-value="85 kWh" style="background:linear-gradient(180deg,#60a5fa,#3b82f6)"></div>
         <div class="bar-label">Piscina<br>Padrão<br>(1.5m)</div>
@@ -526,18 +900,18 @@ TEMP_MAX = <span class="num">29.0</span>
 </section>
 
 <!-- QUIZ -->
-<section id="quiz" class="quiz">
+<section id="quiz" class="quiz" aria-labelledby="quiz-title">
   <div class="section-title reveal">
     <span class="eyebrow">Teste seus conhecimentos</span>
-    <h2>Quiz <span class="hl">Interativo</span></h2>
+    <h2 id="quiz-title">Quiz <span class="hl">Interativo</span></h2>
     <p>Responda 5 perguntas sobre sensores de temperatura e descubra seu nível.</p>
   </div>
   <div class="quiz-box reveal">
-    <div class="quiz-progress" id="quizProgress"></div>
+    <div class="quiz-progress" id="quizProgress" aria-hidden="true"></div>
     <div id="quizContent">
       <div class="quiz-question" id="quizQuestion"></div>
-      <div class="quiz-options" id="quizOptions"></div>
-      <div class="quiz-feedback" id="quizFeedback"></div>
+      <div class="quiz-options" id="quizOptions" role="radiogroup"></div>
+      <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
       <button class="btn btn-primary quiz-next" id="quizNext">Próxima →</button>
     </div>
     <div class="quiz-result" id="quizResult">
@@ -550,11 +924,11 @@ TEMP_MAX = <span class="num">29.0</span>
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">
-        <div class="logo-icon">🌡️</div>
+        <div class="logo-icon" aria-hidden="true">🌡️</div>
         <div class="logo-text">Termo<span>Lab</span></div>
       </div>
       <p>Plataforma educacional interativa sobre sensores de temperatura, desenvolvida para estudantes do Colégio Estadual do Paraná.</p>
@@ -563,6 +937,8 @@ TEMP_MAX = <span class="num">29.0</span>
       <h4>Navegação</h4>
       <a href="#conceitos">Conceitos</a>
       <a href="#conversor">Conversor</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#medindo">Medindo</a>
       <a href="#sensores">Sensores</a>
       <a href="#codigos">Códigos</a>
     </div>
@@ -574,11 +950,25 @@ TEMP_MAX = <span class="num">29.0</span>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>Desenvolvido com <span class="heart">❤️</span> para fins educacionais • Colégio Estadual do Paraná</p>
+    <p>Desenvolvido com <span class="heart" aria-hidden="true">❤️</span> para fins educacionais • Colégio Estadual do Paraná</p>
     <p class="copy">© 2026 — Projeto Interdisciplinar de Física e Tecnologia</p>
   </div>
 </footer>
 
+<!-- Scripts -->
 <script src="script.js"></script>
+
+<!-- VLIBRAS -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
 </body>
 </html>

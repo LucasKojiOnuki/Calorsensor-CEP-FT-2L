@@ -89,6 +89,7 @@ function initSimulator() {
     document.getElementById('simTemp').textContent = t + '°C';
     document.getElementById('simF').textContent = f.toFixed(1) + ' °F';
     document.getElementById('simK').textContent = k.toFixed(2) + ' K';
+    simSlider.setAttribute('aria-valuenow', t);
 
     let color1, color2, status, state, energy;
 
@@ -137,7 +138,6 @@ function initSimulator() {
     document.getElementById('simState').textContent = state;
     document.getElementById('simEnergy').textContent = energy;
 
-    // Altura da coluna
     const min = -20, max = 100;
     const pct = (t - min) / (max - min);
     const col = document.getElementById('simColumn');
@@ -147,6 +147,214 @@ function initSimulator() {
 
   simSlider.addEventListener('input', updateSim);
   updateSim();
+}
+
+// ============ COMO FUNCIONA - DIAGRAMA ============
+function initHowWorks() {
+  document.querySelectorAll('.how-step').forEach(step => {
+    const toggle = () => {
+      const isActive = step.classList.contains('active');
+      document.querySelectorAll('.how-step').forEach(s => {
+        s.classList.remove('active');
+        s.setAttribute('aria-expanded', 'false');
+      });
+      if (!isActive) {
+        step.classList.add('active');
+        step.setAttribute('aria-expanded', 'true');
+      }
+    };
+    step.addEventListener('click', toggle);
+    step.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+}
+
+// ============ SIMULAÇÃO MOLECULAR ============
+function initMolecular() {
+  const canvas = document.getElementById('molecularCanvas');
+  const slider = document.getElementById('molecularSlider');
+  if (!canvas || !slider) return;
+
+  const molecules = [];
+  const NUM_MOLECULES = 25;
+
+  // Criar moléculas
+  for (let i = 0; i < NUM_MOLECULES; i++) {
+    const mol = document.createElement('div');
+    mol.className = 'molecule';
+    canvas.appendChild(mol);
+    molecules.push({
+      el: mol,
+      x: Math.random() * 90 + 5,
+      y: Math.random() * 90 + 5,
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2
+    });
+  }
+
+  let temperature = 30;
+  let animationId;
+
+  function updateMolecules() {
+    const speedFactor = temperature / 30;
+    const canvasRect = canvas.getBoundingClientRect();
+    const w = canvasRect.width || 300;
+    const h = canvasRect.height || 300;
+
+    molecules.forEach(m => {
+      // Atualizar posição
+      m.x += m.vx * speedFactor;
+      m.y += m.vy * speedFactor;
+
+      // Colisão com bordas
+      if (m.x <= 0 || m.x >= 95) m.vx *= -1;
+      if (m.y <= 0 || m.y >= 95) m.vy *= -1;
+
+      m.x = Math.max(0, Math.min(95, m.x));
+      m.y = Math.max(0, Math.min(95, m.y));
+
+      // Aplicar posição
+      m.el.style.left = m.x + '%';
+      m.el.style.top = m.y + '%';
+
+      // Mudar cor conforme temperatura
+      if (temperature < 20) {
+        m.el.style.background = 'radial-gradient(circle at 30% 30%, #fff, #60a5fa 40%, #3b82f6)';
+        m.el.style.boxShadow = '0 0 10px rgba(96, 165, 250, .6)';
+      } else if (temperature < 50) {
+        m.el.style.background = 'radial-gradient(circle at 30% 30%, #fff, #22d3ee 40%, #0ea5e9)';
+        m.el.style.boxShadow = '0 0 10px rgba(34, 211, 238, .6)';
+      } else if (temperature < 75) {
+        m.el.style.background = 'radial-gradient(circle at 30% 30%, #fff, #ffd166 40%, #ff6b35)';
+        m.el.style.boxShadow = '0 0 10px rgba(255, 107, 53, .6)';
+      } else {
+        m.el.style.background = 'radial-gradient(circle at 30% 30%, #fff, #ef4444 40%, #dc2626)';
+        m.el.style.boxShadow = '0 0 15px rgba(239, 68, 68, .8)';
+      }
+    });
+
+    animationId = requestAnimationFrame(updateMolecules);
+  }
+
+  function updateInfo() {
+    const stateEl = document.getElementById('molState');
+    const speedEl = document.getElementById('molSpeed');
+    const energyEl = document.getElementById('molEnergy');
+
+    let state, speed, energy;
+    if (temperature < 10) {
+      state = 'Sólido 🧊'; speed = 'Muito lenta'; energy = 'Mínima';
+    } else if (temperature < 40) {
+      state = 'Líquido 💧'; speed = 'Lenta'; energy = 'Baixa';
+    } else if (temperature < 70) {
+      state = 'Líquido 💧'; speed = 'Média'; energy = 'Moderada';
+    } else if (temperature < 95) {
+      state = 'Líquido quente 🔥'; speed = 'Rápida'; energy = 'Alta';
+    } else {
+      state = 'Gasoso 💨'; speed = 'Muito rápida'; energy = 'Máxima';
+    }
+
+    stateEl.textContent = state;
+    speedEl.textContent = speed;
+    energyEl.textContent = energy;
+  }
+
+  slider.addEventListener('input', () => {
+    temperature = parseFloat(slider.value);
+    updateInfo();
+  });
+
+  updateInfo();
+  updateMolecules();
+}
+
+// ============ CALCULADORA DE AQUECIMENTO ============
+function initCalculator() {
+  const volumeInput = document.getElementById('calcVolume');
+  const t1Input = document.getElementById('calcT1');
+  const t2Input = document.getElementById('calcT2');
+  const timeInput = document.getElementById('calcTime');
+
+  if (!volumeInput || !t1Input || !t2Input || !timeInput) return;
+
+  function formatNumber(num) {
+    return num.toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+  }
+
+  function calculate() {
+    const V = parseFloat(volumeInput.value) || 0; // litros
+    const T1 = parseFloat(t1Input.value) || 0;
+    const T2 = parseFloat(t2Input.value) || 0;
+    const time = parseFloat(timeInput.value) || 1;
+
+    const m = V * 1000; // massa em gramas (1L = 1000g)
+    const c = 4.186; // calor específico da água em J/g°C
+    const deltaT = T2 - T1;
+
+    // Q = m * c * ΔT (em Joules)
+    const Q_joules = m * c * deltaT;
+    const Q_kcal = Q_joules / 4186; // 1 kcal = 4186 J
+    const Q_kwh = Q_joules / 3600000; // 1 kWh = 3.600.000 J
+    const power_kw = Q_kwh / time; // potência em kW
+    const cost = Q_kwh * 0.80; // R$ 0,80 por kWh
+
+    document.getElementById('resultEnergy').textContent = formatNumber(Q_joules);
+    document.getElementById('resultKcal').textContent = formatNumber(Q_kcal);
+    document.getElementById('resultKwh').textContent = formatNumber(Q_kwh);
+    document.getElementById('resultPower').textContent = formatNumber(power_kw);
+    document.getElementById('resultCost').textContent = 'R$ ' + formatNumber(cost);
+
+    // Passos do cálculo
+    const stepsEl = document.getElementById('calcSteps');
+    stepsEl.innerHTML = `
+      <div class="calc-step">
+        <span class="calc-step-num">1</span>
+        <code>m = ${V} L × 1000 = <strong>${formatNumber(m)} g</strong></code>
+      </div>
+      <div class="calc-step">
+        <span class="calc-step-num">2</span>
+        <code>ΔT = ${T2} - ${T1} = <strong>${formatNumber(deltaT)} °C</strong></code>
+      </div>
+      <div class="calc-step">
+        <span class="calc-step-num">3</span>
+        <code>Q = m·c·ΔT = ${formatNumber(m)} × 4,186 × ${formatNumber(deltaT)}</code>
+      </div>
+      <div class="calc-step">
+        <span class="calc-step-num">4</span>
+        <code>Q = <strong>${formatNumber(Q_joules)} J</strong> (${formatNumber(Q_kcal)} kcal)</code>
+      </div>
+      <div class="calc-step">
+        <span class="calc-step-num">5</span>
+        <code>Em kWh: ${formatNumber(Q_joules)} ÷ 3.600.000 = <strong>${formatNumber(Q_kwh)} kWh</strong></code>
+      </div>
+      <div class="calc-step">
+        <span class="calc-step-num">6</span>
+        <code>Potência: ${formatNumber(Q_kwh)} ÷ ${time}h = <strong>${formatNumber(power_kw)} kW</strong></code>
+      </div>
+      <div class="calc-step">
+        <span class="calc-step-num">💰</span>
+        <code>Custo: ${formatNumber(Q_kwh)} × R$ 0,80 = <strong>R$ ${formatNumber(cost)}</strong></code>
+      </div>
+    `;
+  }
+
+  [volumeInput, t1Input, t2Input, timeInput].forEach(input => {
+    input.addEventListener('input', calculate);
+  });
+
+  // Presets de volume
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      volumeInput.value = btn.dataset.value;
+      calculate();
+    });
+  });
+
+  calculate(); // cálculo inicial
 }
 
 // ============ GRÁFICO COMPARATIVO DE SENSORES ============
@@ -204,12 +412,26 @@ function animateCounters(container) {
   });
 }
 
-// ============ DIAGRAMA INTERATIVO ============
+// ============ DIAGRAMA PISCINA ============
 function initDiagram() {
   document.querySelectorAll('.flow-step').forEach(step => {
-    step.addEventListener('click', () => {
-      document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
-      step.classList.add('active');
+    const toggle = () => {
+      const isActive = step.classList.contains('active');
+      document.querySelectorAll('.flow-step').forEach(s => {
+        s.classList.remove('active');
+        s.setAttribute('aria-expanded', 'false');
+      });
+      if (!isActive) {
+        step.classList.add('active');
+        step.setAttribute('aria-expanded', 'true');
+      }
+    };
+    step.addEventListener('click', toggle);
+    step.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
     });
   });
 }
@@ -225,11 +447,16 @@ function animateEnergy() {
 
 // ============ TABS DE CÓDIGOS ============
 function initTabs() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      buttons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       document.getElementById(btn.dataset.tab).classList.add('active');
     });
   });
@@ -250,10 +477,10 @@ const questions = [
     explain: 'A norma FINA recomenda 26-28°C para competições oficiais de natação, garantindo conforto térmico aos atletas.'
   },
   {
-    q: 'Qual é a fórmula para converter Celsius em Fahrenheit?',
-    options: ['F = C + 32', 'F = C × 9/5 + 32', 'F = C × 5/9 - 32', 'F = C × 2 + 30'],
-    correct: 1,
-    explain: 'A fórmula correta é F = C × 9/5 + 32. Exemplo: 27°C = 27 × 1.8 + 32 = 80.6°F'
+    q: 'Qual é a fórmula para calcular a energia necessária para aquecer água?',
+    options: ['E = m·c·ΔT', 'E = m·g·h', 'E = P·t', 'E = V·I·t'],
+    correct: 0,
+    explain: 'A equação fundamental da calorimetria é Q = m·c·ΔT, onde m é a massa, c é o calor específico e ΔT é a variação de temperatura.'
   },
   {
     q: 'O que é o zero absoluto na escala Kelvin?',
@@ -262,10 +489,10 @@ const questions = [
     explain: 'O zero absoluto (0 K) equivale a -273,15°C, temperatura teórica onde o movimento molecular cessa completamente.'
   },
   {
-    q: 'Qual tipo de sensor mede temperatura SEM contato físico?',
-    options: ['PT100', 'LM35', 'Infravermelho (MLX90614)', 'Termistor NTC'],
+    q: 'Qual princípio físico o sensor infravermelho utiliza?',
+    options: ['Dilatação térmica', 'Efeito Seebeck', 'Radiação térmica (Stefan-Boltzmann)', 'Variação de resistência'],
     correct: 2,
-    explain: 'Sensores infravermelhos detectam a radiação térmica emitida pelos objetos, permitindo medição à distância — usados em termômetros clínicos e industriais.'
+    explain: 'Sensores infravermelhos detectam a radiação térmica emitida pelos objetos, baseada na Lei de Stefan-Boltzmann (E = ε·σ·T⁴).'
   }
 ];
 
@@ -294,6 +521,8 @@ function renderQuiz() {
   q.options.forEach((opt, i) => {
     const btn = document.createElement('button');
     btn.className = 'quiz-option';
+    btn.setAttribute('role', 'radio');
+    btn.setAttribute('aria-checked', 'false');
     btn.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
     btn.addEventListener('click', () => selectAnswer(i, btn));
     opts.appendChild(btn);
@@ -311,6 +540,7 @@ function selectAnswer(idx, btn) {
   const opts = document.querySelectorAll('.quiz-option');
 
   opts.forEach((o, i) => {
+    o.setAttribute('aria-checked', i === idx ? 'true' : 'false');
     if (i === q.correct) o.classList.add('correct');
     else if (i === idx) o.classList.add('wrong');
   });
@@ -380,6 +610,7 @@ function initBurger() {
     const ul = document.querySelector('nav ul');
     if (ul.style.display === 'flex') {
       ul.style.display = 'none';
+      burger.setAttribute('aria-expanded', 'false');
       return;
     }
     ul.style.display = 'flex';
@@ -391,6 +622,7 @@ function initBurger() {
     ul.style.padding = '20px';
     ul.style.borderRadius = '14px';
     ul.style.border = '1px solid var(--border)';
+    burger.setAttribute('aria-expanded', 'true');
   });
 }
 
@@ -401,6 +633,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initConverter();
   initSimulator();
+  initHowWorks();
+  initMolecular();
+  initCalculator();
   initChart();
   initDiagram();
   initTabs();
